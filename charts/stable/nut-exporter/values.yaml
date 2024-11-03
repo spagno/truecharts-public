@@ -1,0 +1,33 @@
+image:
+  repository: hon95/prometheus-nut-exporter
+  pullPolicy: IfNotPresent
+  tag: 1.2.1@sha256:a9bfbbae3b12a6486e6e4b933a69a79d01342db27346d6b4cd5512f4eef6b111
+service:
+  main:
+    ports:
+      main:
+        port: 9995
+metrics:
+  main:
+    enabled: true
+    type: "servicemonitor"
+    endpoints:
+    - port: main
+      params:
+        target:
+        - 192.168.68.1:3493
+      path: /nut
+      relabelings:
+      - action: replace
+        sourceLabels:
+        - __param_target
+        targetLabel: target
+
+configmap:
+  dashboard:
+    enabled: true
+    labels:
+      grafana_dashboard: "1"
+    data:
+      nut-exporter.json: >-
+        {{ .Files.Get "dashboard.json" | indent 8 }}

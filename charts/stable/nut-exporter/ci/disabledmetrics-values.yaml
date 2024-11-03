@@ -1,0 +1,15 @@
+metrics:
+  main:
+    enabled: false
+    type: "servicemonitor"
+    endpoints:
+    - port: main
+      params:
+        target:
+        - 192.168.68.1:3493
+      path: /nut
+      relabelings:
+      - action: replace
+        sourceLabels:
+        - __param_target
+        targetLabel: target
