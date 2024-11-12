@@ -1,0 +1,15 @@
+{
+    "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
+    "name": "TrueCharts",
+    "image": "tccr.io/tccr/devcontainer:v1.0.0-RC28@sha256:99bab70e15d0060613473b0777d67a0d66a3565fd14898f5c6cce7b31425d324",
+    "initializeCommand": "docker pull tccr.io/tccr/devcontainer:v1.0.0-RC28",
+    "postCreateCommand": {
+      "setup": "bash ${containerWorkspaceFolder}/.devcontainer/postCreateCommand.sh"
+    },
+    "postStartCommand": {
+      "git": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+    },
+    "postAttachCommand": "fish",
+    "updateRemoteUserUID": false,
+    "runArgs": ["--privileged"]
+  }
