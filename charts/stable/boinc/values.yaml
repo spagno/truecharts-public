@@ -1,7 +1,7 @@
 image:
   repository: ghcr.io/linuxserver/boinc
   pullPolicy: IfNotPresent
-  tag: latest@sha256:fb35a4ccdd0e3ae2dd9b0e93bd580ce25dc40a75c5a1137c3e4e267f88ccd0cb
+  tag: latest@sha256:ddabe5777e84d80877b880272f7ac6c54a28d5a8c6d9721fbbcda99699837651
 securityContext:
   container:
     readOnlyRootFilesystem: false

@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: bitmagnet
-      version: 3.3.1
+      version: 3.3.2
       sourceRef:
         kind: HelmRepository
         name: truecharts
@@ -61,9 +61,9 @@ spec:
                 namespace: traefik
           certManager:
             enabled: true
-            certificateIssuer: ks-le-prod
+            certificateIssuer: domain-1-le-prod
         hosts:
-          - host: bitmagnet.${BASE_DOMAIN}
+          - host: bitmagnet.${DOMAIN_1}
             paths:
               - path: /
                 pathType: Prefix
