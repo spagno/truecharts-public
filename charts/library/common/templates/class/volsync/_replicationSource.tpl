@@ -20,7 +20,7 @@ objectData:
   {{- $schedule := "0 0 * * *" -}}
   {{- if and $volsyncData.src.trigger $volsyncData.src.trigger.schedule -}}
     {{- $schedule = $volsyncData.src.trigger.schedule -}}
-  {{- end }}
+  {{- end -}}
 
   {{- $retain := dict "hourly" 6 "daily" 5 "weekly" 4 "monthly" 3 "yearly" 1 -}}
   {{- if $volsyncData.src.retain -}}

@@ -1,0 +1,25 @@
+image:
+  pullPolicy: IfNotPresent
+  repository: seaduboi/broadcast-box
+  tag: latest@sha256:fe8ed258a6a3352ad44435134ef9ab64d586ea29f6f31599082b3fd3f66997b9
+service:
+  main:
+    ports:
+      main:
+        port: 8080
+        protocol: http
+        targetPort: 8080
+      webrtc:
+        enabled: true
+        port: 60006
+        protocol: udp
+        targetPort: 60006
+workload:
+  main:
+    podSpec:
+      containers:
+        main:
+          env:
+            NETWORK_TEST_ON_START: false
+            INCLUDE_PUBLIC_IP_IN_NAT_1_TO_1_IP: true
+            UDP_MUX_PORT: "{{ .Values.service.main.ports.webrtc.port }}"

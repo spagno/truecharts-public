@@ -1,7 +1,7 @@
 image:
   repository: docker.io/beromir/servas
   pullPolicy: IfNotPresent
-  tag: 0.4.0@sha256:9a7b1c895975748f6684c82bd15bd98814e83514f1f2e2016ad89645f69bf966
+  tag: 0.5.0@sha256:8ddd079ac3d325c31b651d63c641eca1bd498787c8de11b110a45a512f48f70d
 securityContext:
   container:
     runAsNonRoot: false

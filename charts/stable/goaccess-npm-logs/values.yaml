@@ -1,7 +1,7 @@
 image:
   pullPolicy: IfNotPresent
   repository: docker.io/xavierh/goaccess-for-nginxproxymanager
-  tag: latest@sha256:af30b1ea71c87db97a169eba508697c9735e37562aaa85572b41a306d843d8de
+  tag: latest@sha256:460479648d5c1eeee420b2d8e25bbb1ff29956db2e33afc21c78dfc117d8f636
 persistence:
   hostpath1:
     enabled: true

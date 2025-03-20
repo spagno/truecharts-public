@@ -1,7 +1,7 @@
 image:
   repository: docker.io/thelounge/thelounge
   pullPolicy: IfNotPresent
-  tag: 4.4.3@sha256:8e0a075f7461aaa566cf552eef1d1586b29be9ca1e377ef61cb77461b2d16c6c
+  tag: 4.4.3@sha256:577bd44f67d2f88c4c0c63eb60d7b79e40579e2c23902dcd5f40f5bd5c34aed4
 service:
   main:
     ports:

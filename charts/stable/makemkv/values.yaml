@@ -1,6 +1,6 @@
 image:
   repository: docker.io/jlesage/makemkv
-  tag: v24.11.1@sha256:d994aeadf67f231b8f310e3a7d7e14b3494440bee325b231fa2e0f408b59e1b1
+  tag: v25.02.3@sha256:7952ff1ce7e6f7a4e2ce6bca6dd5141e8235be064613c7cc243b3de462a7972f
   pullPolicy: IfNotPresent
 makemkv:
   # General Settings

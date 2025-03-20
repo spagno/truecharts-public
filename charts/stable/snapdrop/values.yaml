@@ -1,6 +1,6 @@
 image:
   repository: lscr.io/linuxserver/snapdrop
-  tag: latest@sha256:10d31346e8ed8f7c5cde7bb93e418adcc8dcccab0ad61080297695f663029abb
+  tag: latest@sha256:9197bed844bf29da1c763dd2588a958a9369069b14056b366ce4fb7efc6b4356
   pullPolicy: IfNotPresent
 service:
   main:

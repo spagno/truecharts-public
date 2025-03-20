@@ -1,7 +1,7 @@
 image:
   repository: docker.io/modem7/docker-rickroll
   pullPolicy: IfNotPresent
-  tag: latest@sha256:e615791e7c171befae47bcc8c515d180d9fc73a397edf6c229a5ef538d9b55a4
+  tag: latest@sha256:03ce420bc31f652cb3ffa497b5b1f8fc72cdc4e02f13eca80082d23ec476eb2d
 securityContext:
   container:
     runAsNonRoot: false

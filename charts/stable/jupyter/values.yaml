@@ -1,35 +1,35 @@
 image:
-  repository: docker.io/jupyter/base-notebook
+  repository: quay.io/jupyter/base-notebook
   pullPolicy: IfNotPresent
-  tag: 2023-10-20@sha256:8c903974902b0e9d45d9823c2234411de0614c5c98c4bb782b3d4f55b3e435e6
+  tag: 2025-03-17@sha256:9ace754608bb4a90b3ae3d29e2fe869e66d249bbfbcfbae342165bd57914aac8
 minimalImage:
-  repository: docker.io/jupyter/minimal-notebook
+  repository: quay.io/jupyter/minimal-notebook
   pullPolicy: IfNotPresent
-  tag: 2023-10-20@sha256:1c4c8b6c7c27059c353d4e80523c2696e34723fde67d27418873ebeb42032551
+  tag: 2025-03-17@sha256:3a9a3fd39f75308b50dca453d954108fb3903a21db334adc0fcad28791a85a4f
 rImage:
-  repository: docker.io/jupyter/r-notebook
+  repository: quay.io/jupyter/r-notebook
   pullPolicy: IfNotPresent
-  tag: 2023-10-20@sha256:e845470a05d348b642911ae2cbfca2a9df260c8f5d5ac5e22d96ba9ac557a70e
+  tag: 2025-03-17@sha256:4d06cdf6a0a95b32d38cf41ffd8257cbead8db458d10f7396c684d33686eb3d3
 scipyImage:
-  repository: docker.io/jupyter/scipy-notebook
+  repository: quay.io/jupyter/scipy-notebook
   pullPolicy: IfNotPresent
-  tag: 2023-10-20@sha256:fca4bcc9cbd49d9a15e0e4df6c666adf17776c950da9fa94a4f0a045d5c4ad33
+  tag: 2025-03-17@sha256:0f74a41235840bd175f9a89a5dbfc8e2acc062910525de600ad96e9eddd7918c
 tensorflowImage:
-  repository: docker.io/jupyter/tensorflow-notebook
+  repository: quay.io/jupyter/tensorflow-notebook
   pullPolicy: IfNotPresent
-  tag: 2023-10-20@sha256:173f124f638efe870bb2b535e01a76a80a95217e66ed00751058c51c09d6d85d
+  tag: 2025-03-17@sha256:fc8332e1369971ee8da400af8a960ba0b235016254717b05c2765d072fe8b9b4
 datascienceImage:
-  repository: docker.io/jupyter/datascience-notebook
+  repository: quay.io/jupyter/datascience-notebook
   pullPolicy: IfNotPresent
-  tag: 2023-10-20@sha256:989636579136ff077456368ca44aed80cba7de7e9c30d989f23899bd79c9b5bf
+  tag: 2025-03-17@sha256:37632b7bf64e39deb31fd070ba23534d5ab6df582cf41900678580e0ef583e43
 pysparkImage:
-  repository: docker.io/jupyter/pyspark-notebook
+  repository: quay.io/jupyter/pyspark-notebook
   pullPolicy: IfNotPresent
-  tag: 2023-10-20@sha256:7d0b19de594978b8c0541194d91e29abba40e20aa124873bcf5e9cda2fe037f7
+  tag: 2025-03-17@sha256:bc8e5cef3da8e1c2017a92fa2b5310f00c8f2ebfcdff4b54dfd73753c2433945
 allsparkImage:
-  repository: docker.io/jupyter/all-spark-notebook
+  repository: quay.io/jupyter/all-spark-notebook
   pullPolicy: IfNotPresent
-  tag: 2023-10-20@sha256:b63bae2d9d34779ac969deeb4834efd838991f77269ca9a76bf6b0d1f8678d29
+  tag: 2025-03-17@sha256:3e0aaa5b9447637bb9db59f842feb6b6d4f2aba64f47cd1f557d3c7e85cf2000
 jupyter:
   jupyter_cmd: lab
   restartable: true

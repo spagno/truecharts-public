@@ -1,7 +1,7 @@
 image:
   pullPolicy: IfNotPresent
   repository: docker.io/accetto/ubuntu-vnc-xfce-freecad-g3
-  tag: latest@sha256:f9e530ebf6fa12091f956a4b4dee16919a0d0b6fbd30d74aac3352dab8affb87
+  tag: latest@sha256:6bcec0e57adb5a99d161f288c697fed30812a38b152b3584b70f80d8688df918
 persistence:
   internalshare:
     enabled: true

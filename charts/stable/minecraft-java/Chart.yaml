@@ -6,10 +6,10 @@ annotations:
   truecharts.org/min_helm_version: "3.11"
   truecharts.org/train: stable
 apiVersion: v2
-appVersion: 2024.10.2
+appVersion: 2025.3.0
 dependencies:
   - name: common
-    version: 25.1.7
+    version: 25.4.10
     repository: oci://tccr.io/truecharts
     condition: ""
     alias: ""
@@ -29,9 +29,9 @@ maintainers:
     url: https://truecharts.org
 name: minecraft-java
 sources:
+  - https://ghcr.io/itzg/minecraft-server
   - https://github.com/itzg/docker-minecraft-server
   - https://github.com/truecharts/charts/tree/master/charts/stable/minecraft-java
   - https://hub.docker.com/r/itzg/mc-backup
-  - https://hub.docker.com/r/itzg/minecraft-server
 type: application
-version: 11.2.4
+version: 22.23.1

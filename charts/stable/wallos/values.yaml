@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/ellite/wallos
-  tag: 2.38.2@sha256:fe59b747609a9c6a0f2eea533911026bf10a6a550a3a2ce668ee3208ee631307
+  tag: 2.46.1@sha256:34d1a92083bc4da561607d2b83bf58565754efed714bfe28196b6c3c9ba84031
   pullPolicy: IfNotPresent
 
 securityContext:

@@ -1,7 +1,7 @@
 image:
   pullPolicy: IfNotPresent
   repository: ghcr.io/drakkan/sftpgo
-  tag: v2.6.3-plugins@sha256:97156096b03e708284ef6d3192c397eda7371e79d07fb46d6bdf168d0cb74be7
+  tag: v2.6.6-plugins@sha256:722c6cfe140d9334115e049da8cb199df346d80afe2786fea64372800f826eb4
 securityContext:
   container:
     runAsNonRoot: false

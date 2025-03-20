@@ -1,7 +1,7 @@
 image:
   repository: quay.io/invidious/invidious
   pullPolicy: IfNotPresent
-  tag: latest@sha256:8ea514c132b6a805328891f99b7aeef201523ff7ba28e38fd3c01ec4e14498da
+  tag: latest@sha256:d968ea41e8ac3165d00f774ffba80a53c985a8dc9bc0cf9e710217ab3d5f2e2a
 securityContext:
   container:
     readOnlyRootFilesystem: false
@@ -37,6 +37,7 @@ workload:
           command: ["sh", "-c"]
           args:
             - |
+              apk add git
               echo "Starting DB Seed..."
               mkdir -p invidious && cd invidious
 

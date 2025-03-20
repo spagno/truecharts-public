@@ -1,7 +1,7 @@
 image:
   pullPolicy: IfNotPresent
   repository: docker.io/kylemanna/bitcoind
-  tag: latest@sha256:ab9b21131e0b2bec720dde4510186f8807685425213927b64a033b77f3e320ad
+  tag: latest@sha256:6f1240b4ac2006ebe0126fb1a5cdc90a14ec1c6a4b174b1abfffa84da2cf3946
 persistence:
   blockhainstorage:
     enabled: true

@@ -1,7 +1,7 @@
 image:
-  repository: ghcr.io/onedr0p/sonarr
+  repository: ghcr.io/home-operations/sonarr
   pullPolicy: IfNotPresent
-  tag: 4.0.10.2544@sha256:78c92531eeb6a3aec14b746a79102a1fe69ba8e8dcff84d9ef0549c382befc01
+  tag: 4.0.14.2938@sha256:0169c421055790ef8bd9b5c2807663bb487f56daf1f602a20612a0257c491462
 exportarrImage:
   repository: ghcr.io/onedr0p/exportarr
   pullPolicy: IfNotPresent

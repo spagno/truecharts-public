@@ -1,7 +1,7 @@
-FROM traefik:v3.2.1@sha256:1a3e33f976d10f45efd613aa64814867068bf51c782599a70ef370447686291b
+FROM public.ecr.aws/docker/library/traefik:3.3.4@sha256:cc11989f418e2cfe5e60fc40c92c1813be847f58eda15eced7d5ac890255ad9e
 # Above line used by CI to find tags etc
 
-FROM alpine:3.20.3@sha256:beefdbd8a1da6d2915566fde36db9db0b524eb737fc57cd1367effd16dc0d06d as plugins
+FROM public.ecr.aws/docker/library/alpine:3.21.3@sha256:a8560b36e8b8210634f77d9f7f9efd7ffa463e380b75e2e74aff4511df3ef88c as plugins
 
 # FIXME: Find a way to keep versions up to date
 # -- Use the following prefixes to specify plugins to clone
@@ -10,7 +10,7 @@ FROM alpine:3.20.3@sha256:beefdbd8a1da6d2915566fde36db9db0b524eb737fc57cd1367eff
 
 # Theme Park
 ARG TC_PLUGIN_REPO_THEME_PARK=github.com/packruler/traefik-themepark
-ARG TC_PLUGIN_VERSION_THEME_PARK_VERSION=v1.4.0
+ARG TC_PLUGIN_VERSION_THEME_PARK_VERSION=v1.4.2
 # GeoBlock
 ARG TC_PLUGIN_REPO_GEOBLOCK=github.com/PascalMinder/geoblock
 ARG TC_PLUGIN_VERSION_GEOBLOCK_VERSION=v0.2.8
@@ -22,7 +22,7 @@ ARG TC_PLUGIN_REPO_MODSECURITY=github.com/acouvreur/traefik-modsecurity-plugin
 ARG TC_PLUGIN_VERSION_MODSECURITY_VERSION=v1.3.0
 # Crowdsec
 ARG TC_PLUGIN_REPO_CROWDSEC_BOUNCER=github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
-ARG TC_PLUGIN_VERSION_CROWDSEC_BOUNCER_VERSION=v1.3.0
+ARG TC_PLUGIN_VERSION_CROWDSEC_BOUNCER_VERSION=v1.3.5
 # RewriteResponseHeaders
 ARG TC_PLUGIN_REPO_REWRITERESPONSEHEADERS=github.com/XciD/traefik-plugin-rewrite-headers
 ARG TC_PLUGIN_VERSION_REWRITERESPONSEHEADERS_VERSION=v0.0.4
@@ -35,7 +35,7 @@ RUN apk add --no-cache --update git
 COPY --chmod=777 ./containers/apps/traefik/clone-plugins.sh /clone-plugins.sh
 RUN /clone-plugins.sh
 
-FROM traefik:v3.2.1@sha256:1a3e33f976d10f45efd613aa64814867068bf51c782599a70ef370447686291b
+FROM traefik:v3.3.4@sha256:cc11989f418e2cfe5e60fc40c92c1813be847f58eda15eced7d5ac890255ad9e
 # Copy the plugins from the previous stage
 COPY --from=plugins /plugins-local /plugins-local
 

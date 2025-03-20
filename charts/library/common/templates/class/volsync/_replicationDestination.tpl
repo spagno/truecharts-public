@@ -17,6 +17,16 @@ objectData:
   {{- $objectData := .objectData -}}
   {{- $volsyncData := .volsyncData -}}
 
+  {{- $cleanupTempPVC := false -}}
+  {{- $cleanupCachePVC := false -}}
+  {{- if and (hasKey $volsyncData "cleanupTempPVC") (kindIs "bool" $volsyncData.cleanupTempPVC) -}}
+    {{- $cleanupTempPVC = $volsyncData.cleanupTempPVC -}}
+  {{- end -}}
+  {{- if and (hasKey $volsyncData "cleanupCachePVC") (kindIs "bool" $volsyncData.cleanupCachePVC) -}}
+    {{- $cleanupCachePVC = $volsyncData.cleanupCachePVC -}}
+  {{- end -}}
+
+  {{- $copyMethod := $volsyncData.copyMethod | default "Snapshot" -}}
   {{- $capacity := $rootCtx.Values.global.fallbackDefaults.pvcSize -}}
   {{- if $objectData.size -}}
     {{- $capacity = $objectData.size -}}
@@ -45,8 +55,13 @@ spec:
     manual: restore-once
   {{ $volsyncData.type }}:
     repository: {{ $volsyncData.repository }}
-    copyMethod: {{ $volsyncData.copyMethod | default "Snapshot"}}
+    copyMethod: {{ $copyMethod }}
     capacity: {{ $capacity }}
+    {{- if eq $copyMethod "Direct" }}
+    destinationPVC: {{ $objectData.name }}
+    {{- end }}
+    cleanupTempPVC: {{ $cleanupTempPVC }}
+    cleanupCachePVC: {{ $cleanupCachePVC }}
   {{- include "tc.v1.common.lib.volsync.storage" (dict "rootCtx" $rootCtx "objectData" $objectData "volsyncData" $volsyncData "target" "dest") | trim | nindent 4 }}
   {{- include "tc.v1.common.lib.volsync.cache" (dict "rootCtx" $rootCtx "objectData" $objectData "volsyncData" $volsyncData "target" "dest") | trim | nindent 4 }}
   {{- include "tc.v1.common.lib.volsync.moversecuritycontext" (dict "rootCtx" $rootCtx "objectData" $objectData "volsyncData" $volsyncData "target" "dest") | trim | nindent 4 }}

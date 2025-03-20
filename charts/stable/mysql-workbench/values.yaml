@@ -1,7 +1,7 @@
 image:
   repository: ghcr.io/linuxserver/mysql-workbench
   pullPolicy: IfNotPresent
-  tag: 8.0.40@sha256:7cbfd1f1ab7514bfc568ac4425c305fd9b23a8773f1f2e0506c62175da8d2d1d
+  tag: 8.0.41@sha256:11d2e5873873592230d474bb6bcefd73443f49a77faa1a37254db2b0834351b3
 service:
   main:
     ports:

@@ -1,7 +1,7 @@
 image:
   repository: ghcr.io/linuxserver/smokeping
   pullPolicy: IfNotPresent
-  tag: 2.8.2@sha256:38497c2743e9b7e55a24a124c493a8ee79615cdfb909cb71cb8117ae6f06ae61
+  tag: 2.8.2@sha256:ce80bfd93c63903f6c5f0175b69dc9c4bdaca499a78c52cc565fb833b4449a6e
 strategy:
   type: Recreate
 service:

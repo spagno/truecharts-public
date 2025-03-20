@@ -1,12 +1,17 @@
 image:
   repository: ghcr.io/gethomepage/homepage
-  tag: v0.9.12@sha256:31820dab8e3f830f8a88c3ef1b3a1d103b899f2b8f2f51879d960d0db164a573
+  tag: v1.0.4@sha256:78a34acb9ca1e63eecf12919fc9fb6c91f5dea748395172d7c1904db4c5bc973
   pullPolicy: IfNotPresent
 
 workload:
   main:
     podSpec:
       automountServiceAccountToken: true
+      containers:
+        main:
+          env:
+            # Set this to your host (example: home.mydomain.com)
+            HOMEPAGE_ALLOWED_HOSTS: "localhost"
       initContainers:
         init-config:
           enabled: true

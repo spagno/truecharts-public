@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/mealie-recipes/mealie
-  tag: v2.2.0@sha256:ea53ca0e874cf30c3e6bbed35f5a01a029bafb602d050ddd584fdb7defdb6f8a
+  tag: v2.8.0@sha256:63aef46d90975d9cf9c0fdb9399fc2fe36acd222e1db6be99c504b9ccdbee967
   pullPolicy: IfNotPresent
 mealie:
   frontend:
@@ -70,25 +70,6 @@ workload:
     podSpec:
       containers:
         main:
-          probes:
-            liveness:
-              enabled: true
-              type: exec
-              command:
-                - python
-                - /app/mealie/scripts/healthcheck.py
-            readiness:
-              enabled: true
-              type: exec
-              command:
-                - python
-                - /app/mealie/scripts/healthcheck.py
-            startup:
-              enabled: true
-              type: exec
-              command:
-                - python
-                - /app/mealie/scripts/healthcheck.py
           envFrom:
             - secretRef:
                 name: frontend
@@ -107,6 +88,14 @@ persistence:
       main:
         main:
           mountPath: /app/data
+  nltk:
+    enabled: true
+    type: emptyDir
+    size: 5Gi
+    targetSelector:
+      main:
+        main:
+          mountPath: /nltk_data
 cnpg:
   main:
     enabled: true

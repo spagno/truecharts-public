@@ -1,7 +1,7 @@
 image:
   pullPolicy: IfNotPresent
   repository: docker.io/universalmediaserver/ums
-  tag: latest@sha256:e68a1828c992601c2424d9df307b4d71ea83e1f5c7f122796e8bc2b2ff4033db
+  tag: latest@sha256:497e3c37b6b11594c535594b47f0574fb0f09e52bee335c5ced60f7fa235254e
 persistence:
   config:
     enabled: true

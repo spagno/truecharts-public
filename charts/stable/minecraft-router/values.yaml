@@ -1,7 +1,7 @@
 image:
   repository: docker.io/itzg/mc-router
   pullPolicy: IfNotPresent
-  tag: 1.24.0@sha256:e2359f288d53cb6bd46fedd775bb8d36fce4c77f086c81944d32f36b93ce5657
+  tag: 1.26.0@sha256:7f2ed38d583fbfa38967265920adbe10883d48b0bc69dd6fb127660b12d8fdd0
 service:
   main:
     ports:

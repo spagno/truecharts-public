@@ -1,7 +1,7 @@
 image:
   repository: docker.io/misskey/misskey
   pullPolicy: IfNotPresent
-  tag: 2024.11.0@sha256:f4a167a920444c0e030833f352418f2101307531c95a08120b0c911e992cea27
+  tag: 2025.3.1@sha256:4e1d13f574fcf7e05174ffdbc71fbb3decbabff6cf1081ebe3712e317d90cff5
 
 securityContext:
   pod:

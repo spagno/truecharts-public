@@ -1,6 +1,6 @@
 image:
   repository: docker.io/benzino77/tasmocompiler
-  tag: latest@sha256:18fce0ab4631a71169be97659df41fece3dcc98dc672dbee2abe90c4899e0106
+  tag: latest@sha256:63640e0a426f34d42f486dcc667489a30aeed0d8286517372f830747b7ab5c0f
   pullPolicy: IfNotPresent
 
 securityContext:

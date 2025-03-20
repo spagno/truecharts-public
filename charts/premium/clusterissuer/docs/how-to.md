@@ -6,8 +6,7 @@ This guide will walk you through setting up `clusterissuer`, certificate managem
 
 ## Prerequisites
 
-- [Traefik](/charts/premium/traefik/) is installed from premium train.
-- [Cert-Mananger](/charts/system/cert-manager/) and [Prometheus-Operator](/charts/system/prometheus-operator/)
+- [Cert-Mananger[(/guides/#cert-manager) and [Prometheus(-crds)]((/guides/#prometheus)
 
 :::caution[DNS]
 

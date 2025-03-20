@@ -1,5 +1,5 @@
 {
-  "projectName": "charts",
+  "projectName": "public",
   "projectOwner": "truecharts",
   "repoType": "github",
   "repoHost": "https://github.com",
@@ -2457,6 +2457,51 @@
       "name": "Florent Viel",
       "avatar_url": "https://avatars.githubusercontent.com/u/419078?v=4",
       "profile": "https://blog.luxifer.fr",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "SniperAsh6",
+      "name": "SniperAsh6",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39700437?v=4",
+      "profile": "https://github.com/SniperAsh6",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "aacebedo",
+      "name": "Alexandre Acebedo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1217680?v=4",
+      "profile": "https://codersdiary.me",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "dougEfresh",
+      "name": "Douglas Chimento",
+      "avatar_url": "https://avatars.githubusercontent.com/u/976425?v=4",
+      "profile": "https://resume.dougchimento.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "itconstruct",
+      "name": "Addison McDermid",
+      "avatar_url": "https://avatars.githubusercontent.com/u/555142?v=4",
+      "profile": "http://itconstruct.com.au",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jaja360",
+      "name": "Jaël Gareau",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20613592?v=4",
+      "profile": "https://jaelgareau.com",
       "contributions": [
         "code"
       ]

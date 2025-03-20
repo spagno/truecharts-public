@@ -1,11 +1,11 @@
 image:
   repository: docker.io/grafana/grafana
   pullPolicy: IfNotPresent
-  tag: 11.3.1@sha256:fa801ab6e1ae035135309580891e09f7eb94d1abdbd2106bdc288030b028158c
+  tag: 11.5.2@sha256:8b37a2f028f164ce7b9889e1765b9d6ee23fec80f871d156fbf436d6198d32b7
 
 sidecarImage:
   repository: quay.io/kiwigrid/k8s-sidecar
-  tag: 1.28.0@sha256:4166a019eeafd1f0fef4d867dc5f224f18d84ec8681dbb31f3ca258ecf07bcf2
+  tag: 1.30.2@sha256:cdb361e67b1b5c4945b6e943fbf5909badaaeb51595eaf75fb7493b3abbbe10f
 
 securityContext:
   container:
@@ -20,7 +20,7 @@ service:
 workload:
   main:
     replicas: 1
-    strategy: RollingUpdate
+    strategy: Recreate
     podSpec:
       containers:
         main:
@@ -86,7 +86,7 @@ workload:
           env:
             IGNORE_ALREADY_PROCESSED: false
             METHOD: WATCH
-            LABEL: grafana_datasources
+            LABEL: grafana_datasource
             LABEL_VALUE: "1"
             LOG_LEVEL: info
             FOLDER: /etc/grafana/provisioning/datasources

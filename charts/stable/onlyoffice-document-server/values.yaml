@@ -1,6 +1,6 @@
 image:
   repository: docker.io/onlyoffice/documentserver
-  tag: 8.2.1@sha256:4af9878e3c663739f313ab60ad43f810a3c21d3726652efcd11917b95da1e4f7
+  tag: 8.3.1@sha256:7cf23e8d1376d8c56b0d98696762bdecbe3c8b0d3c182592ed66e2e65b4f8f51
   pullPolicy: IfNotPresent
 service:
   main:
