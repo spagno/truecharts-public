@@ -1,7 +1,7 @@
 image:
   repository: docker.io/lmscommunity/lyrionmusicserver
   pullPolicy: IfNotPresent
-  tag: 9.1.0@sha256:601f46d76a02c3a604d0e725978e963e19b77ae37658ed560f0c221152f43f3f
+  tag: 9.1.0@sha256:d5afa0580d73eb8d622c07fc7e0b89fe55cd7948325fb9355c5906ceee9f9580
 service:
   main:
     ports:
@@ -33,9 +33,7 @@ persistence:
   config:
     enabled: true
     mountPath: /config
-portal:
-  open:
-    enabled: true
+
 securityContext:
   container:
     readOnlyRootFilesystem: false

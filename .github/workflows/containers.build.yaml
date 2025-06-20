@@ -195,7 +195,7 @@ jobs:
       - uses: sigstore/cosign-installer@main
 
       - name: Install Syft
-        uses: anchore/sbom-action/download-syft@f325610c9f50a54015d37c8d16cb3b0e2c8f4de0 # v0.18.0
+        uses: anchore/sbom-action/download-syft@9246b90769f852b3a8921f330c59e0b3f439d6e9 # v0.20.1
 
       - name: Login to Quay
         uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3
@@ -224,7 +224,7 @@ jobs:
       # Install and configure Buildx
       - name: Set up Docker Buildx
         id: buildx
-        uses: docker/setup-buildx-action@b5ca514318bd6ebac0fb2aedd5d36ec1b5c232a2 # v3
+        uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # v3
         with:
           install: true
           version: latest
@@ -240,7 +240,7 @@ jobs:
       # Creates a local build to run tests on
       - name: Build and Load local test-container
         if: ${{ steps.prep.outputs.goss == 'true' }}
-        uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 # v6
+        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6
         with:
           build-args: |
             VERSION=${{ steps.prep.outputs.version }}
@@ -268,7 +268,7 @@ jobs:
       # Push if not a PR, otherwise just test the build process for all requested platforms
       - name: Build and Push
         id: push
-        uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 # v6
+        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6
         with:
           build-args: |
             VERSION=${{ steps.prep.outputs.version }}
@@ -302,19 +302,21 @@ jobs:
           cosign verify quay.io/tccr/${{ matrix.container }}@${{ steps.push.outputs.digest }} --certificate-oidc-issuer=https://token.actions.githubusercontent.com --certificate-identity=https://github.com/truecharts/public/.github/workflows/containers.build.yaml@refs/heads/master
 
       - name: Generate SBOM
+        id: generate_sbom
         if: github.event_name != 'pull_request'
+        continue-on-error: true
         run: |
           syft "quay.io/tccr/${{ matrix.container }}:v${{ steps.prep.outputs.version }}@${{ steps.push.outputs.digest }}" -o spdx-json=${{ matrix.container }}-sbom-spdx.json
 
       - name: Attach SBOM to image
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && steps.generate_sbom.outcome == 'success'
         run: |
           cosign attest --predicate ${{ matrix.container }}-sbom-spdx.json --type spdx "quay.io/tccr/${{ matrix.container }}@${{ steps.push.outputs.digest }}" -y
 
       - name: Verify SBOM attestation
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && steps.generate_sbom.outcome == 'success'
         run: |
-          cosign verify-attestation quay.io/tccr/${{ matrix.container }}@${{ steps.push.outputs.digest }}  --type https://spdx.dev/Document --certificate-oidc-issuer=https://token.actions.githubusercontent.com --certificate-identity=https://github.com/truecharts/containers/.github/workflows/containers.build.yaml@refs/heads/master | jq '.payload |= @base64d | .payload | fromjson'
+          cosign verify-attestation quay.io/tccr/${{ matrix.container }}@${{ steps.push.outputs.digest }}  --type https://spdx.dev/Document --certificate-oidc-issuer=https://token.actions.githubusercontent.com --certificate-identity=https://github.com/truecharts/public/.github/workflows/containers.build.yaml@refs/heads/master | jq '.payload |= @base64d | .payload | fromjson'
 
       - name: Generate provenance
         id: gen-prov
@@ -344,7 +346,7 @@ jobs:
         if: github.event_name != 'pull_request'
         id: verf-prov
         run: |
-          cosign verify-attestation quay.io/tccr/${{ matrix.container }}@${{ steps.push.outputs.digest }} --type slsaprovenance --certificate-oidc-issuer=https://token.actions.githubusercontent.com --certificate-identity=https://github.com/truecharts/containers/.github/workflows/containers.build.yaml@refs/heads/master | jq '.payload |= @base64d | .payload | fromjson'
+          cosign verify-attestation quay.io/tccr/${{ matrix.container }}@${{ steps.push.outputs.digest }} --type slsaprovenance --certificate-oidc-issuer=https://token.actions.githubusercontent.com --certificate-identity=https://github.com/truecharts/public/.github/workflows/containers.build.yaml@refs/heads/master | jq '.payload |= @base64d | .payload | fromjson'
         env:
           COSIGN_EXPERIMENTAL: 1
 

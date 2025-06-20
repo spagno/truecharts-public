@@ -1,7 +1,7 @@
 image:
   repository: quay.io/hedgedoc/hedgedoc
   pullPolicy: IfNotPresent
-  tag: 1.10.2@sha256:248d964e9a3c32ebf531847063112c51324474e7cb2393bbf615d82341b64e69
+  tag: 1.10.3@sha256:25374344ce4cbf4e372fc29b5df2675ae981cad8512beda9088ecf94c6cfc5ba
 service:
   main:
     ports:
@@ -16,9 +16,7 @@ cnpg:
     enabled: true
     user: hedgedoc
     database: hedgedoc
-portal:
-  open:
-    enabled: true
+
 workload:
   main:
     podSpec:

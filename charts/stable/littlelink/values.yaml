@@ -1,16 +1,14 @@
 image:
   repository: ghcr.io/techno-tim/littlelink-server
   pullPolicy: IfNotPresent
-  tag: latest@sha256:9b7a42bb370fb0c9fd1cc55627c6d08535d7c2aa75436b2feb9d25e44ec0e504
+  tag: latest@sha256:d8f3b066e8d4e142dafb1f5dc73a5590cb3341c1f032e61c2e2995b6809fd7e9
 service:
   main:
     ports:
       main:
         port: 10040
         targetPort: 3000
-portal:
-  open:
-    enabled: true
+
 workload:
   main:
     podSpec:

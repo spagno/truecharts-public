@@ -1,7 +1,7 @@
 image:
   pullPolicy: IfNotPresent
   repository: adminer
-  tag: latest@sha256:d748ead47de8a75352dd221e0647c9d10d9f2d48418ca5bf80578b1686fcd3ad
+  tag: latest@sha256:5ee6e18fce9d4ec5d2e82c7f2937b414b076908f11963fe175116e561011b305
 securityContext:
   container:
     readOnlyRootFilesystem: false
@@ -33,6 +33,3 @@ service:
         port: 18080
         protocol: http
         targetPort: 8080
-portal:
-  open:
-    enabled: true

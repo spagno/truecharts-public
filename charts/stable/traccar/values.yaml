@@ -1,6 +1,6 @@
 image:
   repository: docker.io/traccar/traccar
-  tag: 6.6@sha256:dc73ac1ac1388f97e3259dbbea3bd09d90dccd2df391466ef51826ac591a33f9
+  tag: 6.7@sha256:621c8d6d46fdb990aa43224c6644947d2de52f20728bd71e21c0808d1012db1f
   pullPolicy: IfNotPresent
 service:
   main:
@@ -17,9 +17,7 @@ cnpg:
     enabled: true
     user: traccar
     database: traccar
-portal:
-  open:
-    enabled: true
+
 workload:
   main:
     podSpec:

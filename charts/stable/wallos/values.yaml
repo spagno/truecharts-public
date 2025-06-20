@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/ellite/wallos
-  tag: 2.46.1@sha256:34d1a92083bc4da561607d2b83bf58565754efed714bfe28196b6c3c9ba84031
+  tag: 3.3.0@sha256:9dd49af3c8839e561aa458411d90074f8d9da434bdd65a8a13657d5d19229f73
   pullPolicy: IfNotPresent
 
 securityContext:
@@ -25,7 +25,3 @@ persistence:
   logos:
     enabled: true
     mountPath: "/var/www/html/images/uploads/logos"
-
-portal:
-  open:
-    enabled: true

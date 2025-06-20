@@ -1,7 +1,7 @@
 image:
   repository: docker.io/wiserain/flexget
   pullPolicy: IfNotPresent
-  tag: 3.15.26@sha256:57d31417695ddea7a03a6b67d5dd08b297c03bd5093a8e4e773a6bc3457b0395
+  tag: 3.16.5@sha256:e7bea08de8f681221d595113123932dfd4f7978f0c94cf0ebd79d24d78ca2f7d
 securityContext:
   container:
     runAsNonRoot: false
@@ -40,6 +40,3 @@ persistence:
   data:
     enabled: true
     mountPath: /data
-portal:
-  open:
-    enabled: true

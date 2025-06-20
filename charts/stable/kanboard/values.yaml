@@ -1,6 +1,6 @@
 image:
   repository: quay.io/kanboard/kanboard
-  tag: v1.2.43@sha256:28ea8445b3ba79956a77b90b6844d8ee2fbcb978882985cb77d23254f717032e
+  tag: v1.2.45@sha256:6711163886e747b5947a771426908c66bca64e4b690b6251137c54f9765a6467
   pullPolicy: IfNotPresent
 service:
   main:
@@ -20,9 +20,7 @@ cnpg:
     enabled: true
     user: kanboard
     database: kanboard
-portal:
-  open:
-    enabled: true
+
 securityContext:
   container:
     readOnlyRootFilesystem: false

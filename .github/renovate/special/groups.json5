@@ -69,7 +69,7 @@
     },
     {
       "matchDatasources": ["docker"],
-      "matchPackagePrefixes": ["altran1502/immich"],
+      "matchPackagePrefixes": ["ghcr.io/immich-app"],
       "groupName": "immich"
     },
     {
@@ -91,6 +91,11 @@
       "matchDatasources": ["docker"],
       "matchPackagePrefixes": ["lscr.io/linuxserver/webtop"],
       "groupName": "webtop"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackagePrefixes": ["ghcr.io/m1k1o/neko"],
+      "groupName": "neko"
     },
     {
       "matchDatasources": ["docker"],

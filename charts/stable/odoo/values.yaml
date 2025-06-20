@@ -1,7 +1,7 @@
 image:
   repository: public.ecr.aws/docker/library/odoo
   pullPolicy: IfNotPresent
-  tag: 18.0@sha256:fb9654cbc22426c03962992935ca64709f38aab9f55e5b68b55eecdeedb92e60
+  tag: 18.0@sha256:6dc919e23f5dbed19f92caa427728a367acf1a02403fadeee8bd1fd2e7aec8ba
 securityContext:
   container:
     readOnlyRootFilesystem: false
@@ -87,6 +87,3 @@ cnpg:
     enabled: true
     user: odoo
     database: odoo
-portal:
-  open:
-    enabled: true

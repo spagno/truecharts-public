@@ -1,6 +1,6 @@
 image:
   repository: hello-world
-  tag: latest@sha256:7e1a4e2d11e2ac7a8c3f768d4166c2defeb09d2a750b010412b6ea13de1efb19
+  tag: latest@sha256:940c619fbd418f9b2b1b63e25d8861f9cc1b46e3fc8b018ccfe8b78f19b8cc4f
   pullPolicy: IfNotPresent
 manifestManager:
   enabled: true
@@ -25,9 +25,7 @@ service:
       main:
         enabled: false
         port: 9999
-portal:
-  open:
-    enabled: false
+
 operator:
   cert-manager:
     namespace: cert-manager

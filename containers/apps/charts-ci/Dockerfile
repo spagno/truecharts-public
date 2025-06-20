@@ -1,6 +1,6 @@
 # Define Chart Releaser
 # hadolint ignore=DL3007
-FROM ghcr.io/actions/actions-runner:2.322.0@sha256:c02e8e1b479ea39b196c3bb0a40a66a191302654a6ef5c042eafe11c13323137
+FROM ghcr.io/actions/actions-runner:2.325.0@sha256:deb54a88ead0a86beedec6ac949e8b28f77478835b9c6434ccc237390a6e3e4f
 
 SHELL ["/bin/bash", "-c"]
 
@@ -190,7 +190,7 @@ RUN \
 
 # Install golang
 
-COPY --from=golang:1.24.1@sha256:af0bb3052d6700e1bc70a37bca483dc8d76994fd16ae441ad72390eea6016d03 /usr/local/go/ /usr/local/go/
+COPY --from=golang:1.24.4@sha256:10c131810f80a4802c49cab0961bbe18a16f4bb2fb99ef16deaa23e4246fc817 /usr/local/go/ /usr/local/go/
 
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:$PATH

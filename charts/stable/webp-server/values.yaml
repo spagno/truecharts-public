@@ -1,7 +1,7 @@
 image:
   pullPolicy: IfNotPresent
   repository: docker.io/webpsh/webps
-  tag: latest@sha256:d7ea6200e67bec0b89af59c7bbf2fa3820f2ad6d67b7bded5d438754c70a0c84
+  tag: latest@sha256:0de8acd3587f5b786da65d4aeff62d20f194a87f5b53787aae59acc17bdee687
 persistence:
   storagecache:
     enabled: true
@@ -10,9 +10,7 @@ persistence:
     enabled: true
     mountPath: /opt/pics
     readOnly: true
-portal:
-  open:
-    enabled: true
+
 securityContext:
   container:
     readOnlyRootFilesystem: false

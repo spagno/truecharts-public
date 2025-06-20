@@ -1,7 +1,7 @@
 image:
   repository: ghcr.io/linkwarden/linkwarden
   pullPolicy: IfNotPresent
-  tag: v2.9.3@sha256:848b55ec4ce1a80ee37e9ef1f213701a90771f3b07ee7f5ee341663da22d513f
+  tag: v2.10.2@sha256:ae4ed922964f40134beecb97cc82c6a663ad4f869996838b99b7201bb8b27198
 
 config:
   nextauth_url: "http://example.com"
@@ -54,7 +54,3 @@ cnpg:
     enabled: true
     database: linkwarden
     user: linkwarden
-
-portal:
-  open:
-    enabled: true

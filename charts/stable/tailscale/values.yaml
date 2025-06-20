@@ -1,7 +1,7 @@
 image:
   repository: docker.io/tailscale/tailscale
   pullPolicy: IfNotPresent
-  tag: v1.80.3@sha256:af6026ed3e5892c5d4966962618a09685198111507df16803b2aec7066046582
+  tag: v1.84.2@sha256:8fcad6613f57c42f3073a58823b83b7c961f8e042fb784dc97378828660d65dc
 serviceAccount:
   main:
     enabled: true
@@ -57,9 +57,7 @@ persistence:
     mountPath: /dev/net/tun
     hostPathType: ""
     readOnly: false
-portal:
-  open:
-    enabled: false
+
 securityContext:
   container:
     readOnlyRootFilesystem: false

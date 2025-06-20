@@ -1,6 +1,6 @@
 image:
   repository: docker.io/foxxmd/multi-scrobbler
-  tag: latest@sha256:41a3c79371fb4fda5f88e2d6443de2fe7db1905dd6edfac2dd0bd83877f8f354
+  tag: latest@sha256:a67f45d113b87a9f94194ee9899eacd8999bf18261b885160271893429f5706d
   pullPolicy: IfNotPresent
 
 securityContext:
@@ -21,7 +21,3 @@ persistence:
   config:
     enabled: true
     mountPath: /config
-
-portal:
-  open:
-    enabled: true

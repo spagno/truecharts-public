@@ -1,15 +1,15 @@
 image:
   repository: ghcr.io/stirling-tools/s-pdf
   pullPolicy: IfNotPresent
-  tag: 0.44.2-ultra-lite@sha256:ffb5e97ce2e15df6b0f447dc779c8dcc4dca5d2c546a40aedc1148ebf4d14369
+  tag: 0.46.2-ultra-lite@sha256:caa8440ea33bf0f5cf42ae3bec7e6538479100655c8cfd9b622fb1b987ff26d3
 fatImage:
   repository: ghcr.io/stirling-tools/s-pdf
   pullPolicy: IfNotPresent
-  tag: 0.44.2-fat@sha256:a86a845a345a4276493a16110e271472fbfe2992cc17aa0d92623ca77bd76b26
+  tag: 0.46.2-fat@sha256:df615ff58f1827cc814cb118a6d834b81a8b24a2edb6a04a653fb0c01f070bcf
 fullImage:
   repository: ghcr.io/stirling-tools/s-pdf
   pullPolicy: IfNotPresent
-  tag: 0.44.2@sha256:2608f0661bd4599b9c42bca8739099464455045e167078ac2b6e2644d8f357f8
+  tag: 0.46.2@sha256:396ca949b81198a65b9abfec38518fa44e871b1970dad9f9718ffd030eef9b92
 service:
   main:
     ports:
@@ -48,6 +48,3 @@ persistence:
   logs:
     enabled: true
     mountPath: "/logs"
-portal:
-  open:
-    enabled: true

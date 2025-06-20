@@ -1,6 +1,6 @@
 image:
   repository: docker.io/machines/filestash
-  tag: latest@sha256:372aa3d53c5bb3f33e7ea895ca74213091c4860da652f2993e35585cb6c7818f
+  tag: latest@sha256:e66de9da22225e61cf3bc3e0796f416b3e952c7dfe3cc26bfa9876600ffd647f
   pullPolicy: IfNotPresent
 
 securityContext:
@@ -34,7 +34,3 @@ persistence:
   data:
     enabled: true
     mountPath: /app/data/state
-
-portal:
-  open:
-    enabled: true

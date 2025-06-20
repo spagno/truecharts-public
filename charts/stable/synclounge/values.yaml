@@ -1,7 +1,7 @@
 image:
   repository: ghcr.io/linuxserver/synclounge
   pullPolicy: IfNotPresent
-  tag: 5.2.35@sha256:0b36ffc19e27fc1a58fa0e14197f0d8e111e0a82f2e8db6e10b7d20113818e67
+  tag: 5.2.35@sha256:b1f38db9319596e211120d0612d6ec2d90d54edd02eb3501348c029fd122b4dc
 service:
   main:
     ports:
@@ -11,9 +11,7 @@ service:
 persistence:
   varrun:
     enabled: true
-portal:
-  open:
-    enabled: true
+
 securityContext:
   container:
     runAsNonRoot: false

@@ -1,11 +1,11 @@
 image:
   repository: ghcr.io/home-operations/prowlarr
-  tag: 1.32.2.4987@sha256:77f6b6850d6191f68d2d2d4d21655b103acc5c6f6243d8cb62bb75888499b78a
+  tag: 2.0.0.5094@sha256:5b890c19bf39a1ca3d889d2b8a6f6a9f1bfa2f63ad51d700f64fd2bd11eec089
   pullPolicy: IfNotPresent
 exportarrImage:
   repository: ghcr.io/onedr0p/exportarr
   pullPolicy: IfNotPresent
-  tag: v2.0.1@sha256:727e7bc8f2f0934a2117978c59f4476b954018b849a010ea6cfb380bd6539644
+  tag: v2.2.0@sha256:320b0ea7399f4b9af4741dcdddd7d40c05c36b0359679305d8a54df4e97065df
 securityContext:
   container:
     readOnlyRootFilesystem: false
@@ -105,6 +105,3 @@ metrics:
     targetSelector: metrics
     prometheusRule:
       enabled: false
-portal:
-  open:
-    enabled: true

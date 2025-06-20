@@ -1,6 +1,6 @@
 image:
   repository: docker.io/tinymediamanager/tinymediamanager
-  tag: 5.1.4@sha256:93b8ad901862dfd6bcb19c547ca4ea91b766e6aa53b56e75758c6d2d88ac7443
+  tag: 5.1.7@sha256:a2ffe1af0bad24dc84c1cb1fafdaedfe4dc1ff4dd29230717f6dadca6618f580
   pullPolicy: IfNotPresent
 service:
   main:
@@ -18,9 +18,7 @@ persistence:
   tvshows:
     enabled: true
     mountPath: "/media/tvshows"
-portal:
-  open:
-    enabled: true
+
 securityContext:
   container:
     runAsNonRoot: false

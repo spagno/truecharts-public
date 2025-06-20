@@ -1,9 +1,12 @@
 annotations:
+  artifacthub.io/links: |-
+    - name: support
+    url: https://discord.com/invite/tVsPTHWTtr
   max_scale_version: 24.04.1
   min_scale_version: 24.04.0
   truecharts.org/category: incubator
-  truecharts.org/max_helm_version: "3.15"
-  truecharts.org/min_helm_version: "3.11"
+  truecharts.org/max_helm_version: "3.17"
+  truecharts.org/min_helm_version: "3.14"
   truecharts.org/train: stable
 apiVersion: v2
 appVersion: 2.1.5
@@ -31,4 +34,5 @@ sources:
   - https://ghcr.io/linuxserver/ubooquity
   - https://github.com/truecharts/charts/tree/master/charts/stable/ubooquity
 type: application
-version: 12.5.4
+version: 12.5.8
+

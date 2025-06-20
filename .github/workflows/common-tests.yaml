@@ -47,7 +47,8 @@ jobs:
       fail-fast: false
       matrix:
         helm-version:
-          - v3.14.4
+          - v3.14.0
+          - v3.17.2
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -59,7 +60,7 @@ jobs:
         with:
           version: ${{ matrix.helm-version }}
 
-      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.10"
 
@@ -80,12 +81,13 @@ jobs:
     name: Unit Tests
     runs-on: ubuntu-24.04
     env:
-      helmUnitVersion: 0.7.1
+      helmUnitVersion: 0.8.1
     strategy:
       fail-fast: false
       matrix:
         helm-version:
-          - v3.14.4
+          - v3.14.0
+          - v3.17.2
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -98,7 +100,7 @@ jobs:
           version: ${{ matrix.helm-version }}
 
       - name: Cache helm plugins
-        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
         with:
           path: |
             /home/runner/.local/share/helm/plugins/helm-unittest
@@ -128,11 +130,12 @@ jobs:
         # We test the latest k3s version and the lowest supported by either the oldest supported SCALE or FluxCD release
         k3s-version:
           - v1.26
-          - v1.29
+          - v1.32
+          - latest
         # We test the latest k3s version and the lowest supported by either the oldest supported SCALE or FluxCD release
         helm-version:
-          - v3.12.1
-          - v3.14.4
+          - v3.14.0
+          - v3.17.2
         values:
           - basic-values.yaml
           - configmap-values.yaml
@@ -154,8 +157,6 @@ jobs:
           - cnpg-values.yaml
           - cnpg-multi-values.yaml
           - register-operator-values.yaml
-          - portal-svc-values.yaml
-          - portal-ingress-values.yaml
           ## TODO: reenable when we've some credentials ready to rock for testing
           # - volsync-dest-values.yaml
           # - volsync-src-values.yaml
@@ -173,7 +174,7 @@ jobs:
         with:
           version: ${{ matrix.helm-version }}
 
-      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.10"
 

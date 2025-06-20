@@ -1,6 +1,6 @@
 image:
   repository: public.ecr.aws/docker/library/xwiki
-  tag: 17.1.0-postgres-tomcat@sha256:ba47f3f09add23d0735d73af23f18b9a6aac0d603204998fd2a496525e5dfcc0
+  tag: 17.4.1-postgres-tomcat@sha256:117fa44762c24eb2ef6905663c02da98f4610f3dc216a4658a2776e4c69c5cf5
   pullPolicy: IfNotPresent
 service:
   main:
@@ -17,9 +17,7 @@ cnpg:
     enabled: true
     user: xwiki
     database: xwiki
-portal:
-  open:
-    enabled: true
+
 securityContext:
   container:
     readOnlyRootFilesystem: false

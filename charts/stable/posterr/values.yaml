@@ -1,7 +1,7 @@
 image:
   pullPolicy: IfNotPresent
   repository: docker.io/petersem/posterr
-  tag: latest@sha256:8a3f009f5371eac3faffceb25ec4b301f590cc3c2cf5e60d943ad37963ae301b
+  tag: latest@sha256:c3b84b9d12388dba15e3140b463c2813e26a2df2a89664b7c248cb6253fb2eae
 service:
   main:
     ports:
@@ -16,9 +16,7 @@ persistence:
   custom:
     enabled: true
     mountPath: /usr/src/app/public/custom
-portal:
-  open:
-    enabled: true
+
 securityContext:
   container:
     readOnlyRootFilesystem: false

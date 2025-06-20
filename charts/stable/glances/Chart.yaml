@@ -1,7 +1,10 @@
 annotations:
+  artifacthub.io/links: |-
+    - name: support
+    url: https://discord.com/invite/tVsPTHWTtr
   truecharts.org/category: metrics
-  truecharts.org/max_helm_version: "3.15"
-  truecharts.org/min_helm_version: "3.11"
+  truecharts.org/max_helm_version: "3.17"
+  truecharts.org/min_helm_version: "3.14"
   truecharts.org/train: stable
 apiVersion: v2
 appVersion: 4.3.0.8
@@ -32,3 +35,4 @@ sources:
   - https://hub.docker.com/r/nicolargo/glances
 type: application
 version: 1.0.0
+

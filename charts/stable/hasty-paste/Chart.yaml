@@ -1,12 +1,15 @@
 annotations:
+  artifacthub.io/links: |-
+    - name: support
+    url: https://discord.com/invite/tVsPTHWTtr
   max_scale_version: 24.04.1
   min_scale_version: 24.04.0
   truecharts.org/category: Cloud
-  truecharts.org/max_helm_version: "3.15"
-  truecharts.org/min_helm_version: "3.11"
+  truecharts.org/max_helm_version: "3.17"
+  truecharts.org/min_helm_version: "3.14"
   truecharts.org/train: stable
 apiVersion: v2
-appVersion: 2.0.0
+appVersion: 2.1.0
 dependencies:
   - name: common
     version: 25.4.10
@@ -37,4 +40,5 @@ sources:
   - https://github.com/enchant97/hasty-paste/blob/main/docs/install.md
   - https://github.com/truecharts/charts/tree/master/charts/stable/hasty-paste
 type: application
-version: 9.0.0
+version: 9.1.0
+

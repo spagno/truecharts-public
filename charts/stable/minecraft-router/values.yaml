@@ -1,7 +1,7 @@
 image:
   repository: docker.io/itzg/mc-router
   pullPolicy: IfNotPresent
-  tag: 1.26.0@sha256:7f2ed38d583fbfa38967265920adbe10883d48b0bc69dd6fb127660b12d8fdd0
+  tag: 1.31.1@sha256:15d1ae93e02ff9af164867f9530529bf6f6ce52495102469c15eea231601c3ea
 service:
   main:
     ports:
@@ -27,20 +27,22 @@ workload:
         main:
           probes:
             liveness:
-              enabled: true
-              type: tcp
+              port: "{{ .Values.service.api.ports.api.port }}"
+              path: /routes
+              httpHeaders:
+                Accept: application/json
             readiness:
-              enabled: true
-              type: tcp
+              port: "{{ .Values.service.api.ports.api.port }}"
+              path: /routes
+              httpHeaders:
+                Accept: application/json
             startup:
-              enabled: true
-              type: tcp
+              port: "{{ .Values.service.api.ports.api.port }}"
+              path: /routes
+              httpHeaders:
+                Accept: application/json
           env:
             API_BINDING: ":{{ .Values.service.api.ports.api.port }}"
             PORT: "{{ .Values.service.main.ports.main.port }}"
             DEFAULT: "{{ .Values.mcrouter.default }}"
             MAPPING: '{{ join "," .Values.mcrouter.mappings }}'
-
-portal:
-  open:
-    enabled: false

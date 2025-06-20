@@ -1,7 +1,7 @@
 image:
   repository: public.ecr.aws/bitnami/mongodb
   pullPolicy: IfNotPresent
-  tag: 8.0.5@sha256:bca1c38badfb40c133196357c54f5e0ca44b72014a9e85176690852e16e8e1db
+  tag: 8.0.10@sha256:0df6c67b38b0b3eae08e9d51c88d4a3c667cd9e6f5285b5b162b01e689ccc19a
 
 includeCommon: true
 workload:
@@ -93,6 +93,3 @@ secret:
     data:
       mongodb-password: '{{ ( .Values.password | default "empty" ) }}'
       mongodb-root-password: '{{ ( .Values.rootPassword | default "empty" ) }}'
-portal:
-  open:
-    enabled: false

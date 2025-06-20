@@ -15,7 +15,9 @@ import (
 
 const (
     minHelmVersion     = "3.14"
-    maxHelmVersion     = "3.16"
+    maxHelmVersion     = "3.17"
+    minKubeVersion     = "1.24.0"
+    maxKubeVersion     = "1.32.0"
     kubeVersion        = ">=1.24.0-0"
     apiVersion         = "v2"
     chartType          = "application"
@@ -26,7 +28,9 @@ const (
     defaultAppVersion  = "unknown"
     defaultDescription = "No description provided."
     defaultHome        = "https://truecharts.org"
-    defaultIcon        = "https://github.com/truecharts/website/blob/main/static/svg/logo.svg"
+    defaultIcon        = "https://github.com/truecharts/public/blob/main/website/static/svg/logo.svg"
+    supportUrl         = `- name: support
+url: https://discord.com/invite/tVsPTHWTtr`
 )
 
 var validate *validator.Validate
@@ -132,6 +136,9 @@ func (h *HelmChart) setDefaultValues() {
     h.setAnnotation("truecharts.org/category", defaultCategory, false)
     h.setAnnotation("truecharts.org/min_helm_version", minHelmVersion, true)
     h.setAnnotation("truecharts.org/max_helm_version", maxHelmVersion, true)
+    h.setAnnotation("truecharts.org/min_kubernetes_version", minKubeVersion, true)
+    h.setAnnotation("truecharts.org/max_kubernetes_version", maxKubeVersion, true)
+    h.setAnnotation("artifacthub.io/links", supportUrl, true)
 
     // Set default values for other fields as needed
 }

@@ -1,6 +1,6 @@
 image:
   repository: docker.io/photoprism/photoprism
-  tag: 250228@sha256:8f1cb70617cb97c2b675ad63334be57e962f91e58967e81ae31bc58fc00ed304
+  tag: 250426@sha256:19fdf0d52676d07abe63376a3b2d07779cac010a1bfca563af11968abd2df218
   pullPolicy: IfNotPresent
 service:
   main:
@@ -26,9 +26,7 @@ mariadb:
   enabled: true
   mariadbUsername: photoprism
   mariadbDatabase: photoprism
-portal:
-  open:
-    enabled: true
+
 securityContext:
   container:
     readOnlyRootFilesystem: false

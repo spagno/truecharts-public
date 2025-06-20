@@ -58,11 +58,28 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install ./clustertool
+        shell: bash
+        run: |
+          VERSION="2.0.0-BETA-17"
+          FILENAME="clustertool_${VERSION}_linux_amd64.tar.gz"
+          URL="https://github.com/truecharts/public/releases/download/v${VERSION}/${FILENAME}"
+
+          mkdir -p temp
+          cd temp
+          # Download the archive
+          curl -L -o "$FILENAME" "$URL"
+
+          # Extract the archive
+          tar -xzf "$FILENAME"
+
+          cd ..
+
       - name: Get Changelog Format Version
         shell: bash
         if: github.event_name == 'push'
         run: |
-          ver=$(./charttool genchangelog format-version)
+          ver="1"
           rev="1"
           key="changelog-format-$ver-rev-$rev"
           echo "Cache Key is: $key"
@@ -71,15 +88,13 @@ jobs:
       - name: Cache Changelog
         id: cache-changelog
         if: github.event_name == 'push'
-        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
         with:
           key: ${{ env.CHANGELOG_CACHE_KEY }}-${{ hashFiles('**/Chart.yaml') }}
           path: changelog.json.gz
           restore-keys: |
             ${{ env.CHANGELOG_CACHE_KEY }}-${{ hashFiles('**/Chart.yaml') }}
             ${{ env.CHANGELOG_CACHE_KEY }}-
-
-
 
       - name: Generate Changelog
         shell: bash
@@ -96,8 +111,17 @@ jobs:
             gunzip "$JSON_FILE.gz" --force # Force overwrite if file already exists
           fi
 
-          ./charttool genchangelog "$REPO_PATH" "$TEMPLATE_PATH" "$OUTPUT_DIR"
-          gzip "$JSON_FILE" --best
+          ./temp/clustertool charts genchangelog "$REPO_PATH" "$TEMPLATE_PATH" "$OUTPUT_DIR"
+
+          # TODO: Test remove later
+          echo "temp content:"
+          ls ./temp/
+          echo ""
+          echo "rootcontent"
+          ls ./
+          echo ""
+
+          gzip "$JSON_FILE" --best || echo "Compression failed, ignoring..."
 
       - name: Fix Pre-Commit issues
         shell: bash
@@ -110,7 +134,7 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112 # v4
         with:
-          version: v3.14.0
+          version: v3.17.2
 
       # Optional step if GPG signing is used
       - name: Prepare GPG key
@@ -160,7 +184,7 @@ jobs:
           mkdir -p website/public/img/hotlink-ok/chart-icons-small || echo "chart-icons-small path already exists, continuing..."
           mkdir -p website/src/assets || echo "assets path already exists, continuing..."
 
-          ./charttool genchartlist ./charts
+          ./temp/clustertool charts genchartlist ./charts
           mv charts.json website/src/assets/charts.json
 
           echo "Copying changelogs to docs"
@@ -228,7 +252,7 @@ jobs:
 
       - name: Setup Node
         if: needs.check_changes.outputs.changes_detected == 'true' && needs.check_changes.outputs.changes_detected == 'true'
-        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version-file: ./website/.nvmrc
 
@@ -238,7 +262,7 @@ jobs:
 
       - name: Setup astro Cache
         if: needs.check_changes.outputs.changes_detected == 'true'
-        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
         with:
           # Cache for build and optimized images.
           key: astro-${{ hashFiles('website/package-lock.json') }}
@@ -247,7 +271,7 @@ jobs:
 
       - name: Setup npm Cache
         if: needs.check_changes.outputs.changes_detected == 'true'
-        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
         with:
           # Cache for npm
           path: ~/website/.npm
@@ -257,7 +281,7 @@ jobs:
       - name: Setup node_modules Cache
         id: modulescache
         if: needs.check_changes.outputs.changes_detected == 'true'
-        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
         with:
           # Cache for npm and optimized images.
           path: ./website/node_modules

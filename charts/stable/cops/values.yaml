@@ -1,7 +1,7 @@
 image:
   pullPolicy: IfNotPresent
   repository: lscr.io/linuxserver/cops
-  tag: 3.5.7@sha256:6b567c563bf9ea835d5e35924d15f2c90ff42ae01c18f3ac596495b5db8aa00a
+  tag: 3.6.5@sha256:e475796b797fe3c433b1821b823b46e242015d3370f68db02f08247e89b81c82
 securityContext:
   container:
     readOnlyRootFilesystem: false
@@ -22,6 +22,3 @@ persistence:
   books:
     enabled: true
     mountPath: /books
-portal:
-  open:
-    enabled: true

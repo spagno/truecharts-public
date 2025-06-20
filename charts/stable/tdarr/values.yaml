@@ -1,7 +1,7 @@
 image:
   repository: docker.io/haveagitgat/tdarr
   pullPolicy: IfNotPresent
-  tag: 2.35.02@sha256:3192636b8cee4156cfab4fdfa567fddd64763449460607285ccf9d2956bdef1c
+  tag: 2.44.01@sha256:59c55da122b38e59c24e354592e6e14aa4aa1a5870f35d193e0480bda1828064
 service:
   main:
     ports:
@@ -31,9 +31,7 @@ persistence:
     mountPath: "/media"
   varrun:
     enabled: true
-portal:
-  open:
-    enabled: true
+
 securityContext:
   container:
     readOnlyRootFilesystem: false

@@ -1,7 +1,7 @@
 image:
   repository: docker.io/2fauth/2fauth
   pullPolicy: IfNotPresent
-  tag: 5.4.3@sha256:a4ca5595de44d58e7943d1f1ee0670ce17dccf53c118ef200e3ecaf5dbbc5362
+  tag: 5.6.0@sha256:a3071ecaffc59c654eafe3ac71a90cc07b2dd3a71888fe10a7e925041992097f
 
 securityContext:
   container:
@@ -119,7 +119,3 @@ cnpg:
     enabled: true
     user: twofauth
     database: twofauth
-
-portal:
-  open:
-    enabled: true

@@ -1,7 +1,7 @@
 image:
   repository: ghcr.io/linuxserver/rsnapshot
   pullPolicy: IfNotPresent
-  tag: 1.4.5@sha256:679513e1f4413b4cf1e105418b6a647dc1cf38f7f0398635fca83eba671f17a2
+  tag: 1.4.5@sha256:01b59e8b689cf782ee1cc79d5a5a7a721c176e5203b5a3ec2a89c612e0b71246
 service:
   main:
     enabled: false
@@ -14,9 +14,7 @@ persistence:
   config:
     enabled: true
     mountPath: "/config"
-portal:
-  open:
-    enabled: false
+
 securityContext:
   container:
     runAsNonRoot: false

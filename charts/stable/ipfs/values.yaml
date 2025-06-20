@@ -1,7 +1,7 @@
 image:
   repository: docker.io/ipfs/kubo
   pullPolicy: IfNotPresent
-  tag: v0.33.2@sha256:1a30f5ed8579ea693f43c459d9bd0178dd5ef56f9bed2a4408155150af146979
+  tag: v0.35.0@sha256:6b59935acc23eed3181a0d4684e51e0d59597f028d593cdfe1cd1ed694d53fa6
 service:
   main:
     ports:
@@ -44,9 +44,7 @@ persistence:
   ipns:
     enabled: true
     mountPath: "/ipns"
-portal:
-  open:
-    enabled: true
+
 securityContext:
   container:
     runAsNonRoot: false

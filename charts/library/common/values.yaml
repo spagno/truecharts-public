@@ -56,16 +56,14 @@ global:
     # -- Define a postgresql version for CNPG
     # will be used for all CNPG objects
     # Can be overruled per CNPG objects
-    pgVersion: 16
+
     # -- Define a topologyKey for default topologySpreadConstraints
     # Will be used when defaultSpread: true
     topologyKey: kubernetes.io/hostname
-  metallb:
-    # -- Adds metalLB annotations to services
-    addServiceAnnotations: true
+    cnpg:
+      pgVersion: 16
+      skipEmptyWalArchiveCheck: true
   traefik:
-    # -- Adds traefik annotations to services (when needed)
-    addServiceAnnotations: true
     commonMiddlewares:
       - name: tc-basic-secure-headers
   # -- Minimum nodePort value
@@ -83,7 +81,7 @@ image:
   tag: v1.11.0@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
 
 chartContext:
-  APPURL: ""
+  appUrl: ""
   podCIDR: ""
   svcCIDR: ""
 
@@ -125,11 +123,11 @@ securityContext:
 # Can be overruled per container
 resources:
   limits:
-    cpu: 4000m
-    memory: 8Gi
+    cpu: 1000m
+    memory: 1500Mi
   requests:
-    cpu: 10m
-    memory: 50Mi
+    cpu: 100m
+    memory: 250Mi
 
 containerOptions:
   NVIDIA_CAPS:
@@ -145,6 +143,7 @@ podOptions:
   # If this key exists, takes precedence over the automated calculation
   # hostUsers: false
   shareProcessNamespace: false
+  affinity: {}
   dnsPolicy: ClusterFirst
   dnsConfig:
     options:
@@ -155,6 +154,7 @@ podOptions:
     kubernetes.io/arch: "amd64"
   # -- Used to enforce a good spread for Deployments and StatefulSets by default
   defaultSpread: true
+  defaultAffinity: true
   topologySpreadConstraints: []
   tolerations: []
   schedulerName: ""
@@ -197,9 +197,78 @@ TZ: UTC
 diagnosticMode:
   enabled: false
 
+# -- Vertical pod autoscaler
+vpa:
+  main:
+    enabled: false
+    targetSelector: []
+    # updatePolicy:
+    #   updateMode: auto
+    resourcePolicy:
+      containerPolicies:
+        - containerName: "*"
+          minAllowed:
+            cpu: 50m
+            memory: 50Mi
+          maxAllowed:
+            cpu: 8000m
+            memory: 20Gi
+          controlledResources: ["cpu", "memory"]
+
+# -- Horizontal pod autoscaler
+hpa:
+  main:
+    enabled: false
+    targetSelector: []
+    # minReplicas: 1
+    # maxReplicas: 3
+
+    # metrics:                 # Optional, list of metric specs
+    #   - type: Resource       # Can be Resource, Pods, Object, External, or ContainerResource
+    #     resource:
+    #       name: cpu
+    #       target:
+    #         type: Utilization        # Or Value / AverageValue
+    #         averageUtilization: 50
+
+    #   - type: Resource
+    #     resource:
+    #       name: memory
+    #       target:
+    #         type: AverageValue
+    #         averageValue: 500Mi
+
+    # behavior:                # Optional: controls scaling behavior
+    #   scaleUp:
+    #     stabilizationWindowSeconds: 0
+    #     policies:
+    #       - type: Percent
+    #         value: 100
+    #         periodSeconds: 15
+    #   scaleDown:
+    #     stabilizationWindowSeconds: 300
+    #     policies:
+    #       - type: Pods
+    #         value: 4
+    #         periodSeconds: 60
+
 # -- (docs/service/README.md)
 service:
   main:
+    ##  Integration stuff
+    # integration:
+    #   metallb:
+    #     enabled: false
+    ## Optional to set shared key manually, otherwise set to namespace
+    #     sharedKey: ""
+    #
+    #   cilium:
+    #     enabled: false
+    ## Optional to set shared key manually, otherwise ignored (namespace sharing)
+    #     sharedKey: ""
+    #
+    #   traefik:
+    #     enabled: false
     enabled: true
     primary: true
     ports:
@@ -423,14 +492,29 @@ notes:
     # Thank you for installing {{ .Chart.Name }} by TrueCharts.
   # custom: "{{ toYaml $.Values }}"
   custom: |
-    {{- if .Values.portal }}
+    {{- if .Values.chartContext.appUrl }}
     ## Connecting externally
-    You can use this Chart by opening one of the following links in your browser:
-      {{- range $p := $.Values.portal }}
-      {{- if and $p.enabled $p.rendered }}
-    - {{ toYaml $p.rendered.url }}
-      {{- end }}
-      {{- end -}}
+    You can use this Chart by opening the following links in your browser:
+    - {{ toYaml .Values.chartContext.appUrl }}
+    {{- end }}
+
+    {{ if .Chart.Dependencies }}
+    ## Dependencies for {{ .Chart.Name }}
+
+    {{- range .Chart.Dependencies }}
+    - Chart: {{ .Repository }}/{{ .Name }}
+      Version: {{ .Version }}
+    {{- end }}
+    {{- end }}
+
+
+    {{- if .Values.chartContext.internalUrls }}
+    ## Connecting Internally
+
+    You can reach this chart inside your cluster, using the following service URLS:
+    {{- range $url := .Values.chartContext.internalUrls -}}
+    - {{ $url }}
+    {{- end }}
     {{- end }}
 
     ## Sources for {{ .Chart.Name }}
@@ -460,23 +544,6 @@ notes:
 ##
 ####
 
-# -- Defines the portals for which config needs to be generated
-portal:
-  open:
-    enabled: false
-    override:
-      protocol:
-      host:
-      port:
-    path: ""
-    targetSelector:
-      ingress: ""
-      service: ""
-      port: ""
-
-# -- Set by "open" portal, used for some applications internally.
-APPURL: ""
-
 gluetunImage:
   repository: tccr.io/tccr/gluetun
   tag: v3.40.0@sha256:f5d434869d03fe3c91f832915ecabf7cb65c330732c5ba39ac03feb5e917f552
@@ -489,17 +556,17 @@ netshootImage:
 
 tailscaleImage:
   repository: tccr.io/tccr/tailscale
-  tag: v1.80.3@sha256:e416abbc50a575f67babb16e6632306bdb510db4ce068f5afa328766dff5c710
+  tag: v1.84.2@sha256:686c13d725d3de8f56a1a596c6c3cd92081ecc1970379ccb02c97b15d2d2fd4c
   pullPolicy: IfNotPresent
 
 codeserverImage:
   repository: tccr.io/tccr/code-server
-  tag: v4.98.2@sha256:6e8f93f7a051e9595306cd23a2fd981a4925e27f8ca02e3da16e3965b099bef3
+  tag: v4.100.3@sha256:6eb0e4d3d2fbc1ef8f3e0fb15096eb90838efa5bc0f70e30ea685930bc714cbb
   pullPolicy: IfNotPresent
 
 alpineImage:
   repository: tccr.io/tccr/alpine
-  tag: v3.21.3
+  tag: v3.22.0
   pullPolicy: IfNotPresent
 
 scratchImage:
@@ -520,36 +587,36 @@ wgetImage:
 yqImage:
   pullPolicy: IfNotPresent
   repository: docker.io/mikefarah/yq
-  tag: 4.45.1@sha256:2c100efaca06e95ffe452cfe9bfc0048b493f0f3a072d5fe06f828c638d9462b
+  tag: 4.45.4@sha256:7cf28e5d67782f4b274a93a7bc54a840b553447a0807efd843d069f46bff718c
 
 postgresClientImage:
   repository: tccr.io/tccr/db-wait-postgres
-  tag: v1.1.0@sha256:c85c459d3ca854d705b4aa8663a77752e62c8d33aa43d6a5e4455523f7eb53bd
+  tag: v1.1.0@sha256:15f27128ba0927c11ebc361d3997c4e48824bfde56cd1deacfc6660b2b234ffe
   pullPolicy: IfNotPresent
 
 mariadbClientImage:
   repository: tccr.io/tccr/db-wait-mariadb
-  tag: v1.1.0@sha256:513e3d11ea19317f2d6b146329eaa05f76e24322734d81effb98a5fccea6ed0c
+  tag: v1.1.0@sha256:e2f91d35efd33d1fe179f452405bb9e673fb56c00ed08de079ee048120776c30
   pullPolicy: IfNotPresent
 
 redisClientImage:
   repository: tccr.io/tccr/db-wait-redis
-  tag: v1.1.0@sha256:910ade9977376cef26e6ee3b03939d74e295bb980e3c62ec8174bdd0b12af9af
+  tag: v1.1.0@sha256:13b78f5b48d130a21ee601549c883064588c6a639d778c7a60a6cb44a03c7e77
   pullPolicy: IfNotPresent
 
 mongodbClientImage:
   repository: tccr.io/tccr/db-wait-mongodb
-  tag: v1.2.0@sha256:a7096b68c6f5fae9aca5b4b1ed6ec51b64428d93e2ba619328b107229e98ca86
+  tag: v1.2.0@sha256:53b6fafbea7e11139116220e8088fdd7f043689a1d31721631f728caf8127071
   pullPolicy: IfNotPresent
 
 postgres15Image:
   repository: ghcr.io/cloudnative-pg/postgresql
-  tag: "15.12"
+  tag: "15.13"
   pullPolicy: IfNotPresent
 
 postgres16Image:
   repository: ghcr.io/cloudnative-pg/postgresql
-  tag: "16.8"
+  tag: "16.9"
   pullPolicy: IfNotPresent
 
 postgresPostgis15Image:
@@ -655,6 +722,21 @@ ingress:
         #     # Optional, by default will try to
         #     # "lookup" the namespace based on the name
         #     namespace: ""
+      nginx:
+        enabled: false
+        themepark:
+          enabled: false
+          css: ""
+        ipWhitelist: []
+        auth:
+          # empty to disable, options: "authentik" or "authelia"
+          type: ""
+          # Internal Domain name + port to reach the auth provider, excluding http(s)
+          internalHost: ""
+          # External (ingress) Domain name to reach the auth provider, excluding http(s)
+          externalHost: ""
+          # Optional: override default response headers
+          responseHeaders: []
       homepage:
         enabled: false
         # Default: chart name
@@ -1063,6 +1145,9 @@ cnpg:
 
       # set to true on single-node clusters to allow PVCs to be kept on instance restart
       singleNode: false
+
+      ## set to configure the skipEmptyWalArchiveCheck annotation
+      # skipEmptyWalArchiveCheck: true
       # # -- storage size for the data pvc's
       # # Follows the same spec as .Values.Persistence type=PVC
       # storage:

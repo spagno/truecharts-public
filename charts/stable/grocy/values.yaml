@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/linuxserver/grocy
-  tag: 4.4.2@sha256:c69f09e7a8dfa8c89834cd8aecc61b120e82a8ec858316b3e272477fd0abaf63
+  tag: 4.5.0@sha256:a00f437dfc5ec59faa037fd311b5015af28f72e166a32001b41f96a4d9446bdc
   pullPolicy: IfNotPresent
 service:
   main:
@@ -12,9 +12,7 @@ persistence:
   config:
     enabled: true
     mountPath: "/config"
-portal:
-  open:
-    enabled: true
+
 securityContext:
   container:
     readOnlyRootFilesystem: false

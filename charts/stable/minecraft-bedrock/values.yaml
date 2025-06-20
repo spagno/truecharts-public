@@ -1,6 +1,6 @@
 image:
   repository: docker.io/itzg/minecraft-bedrock-server
-  tag: latest@sha256:fdbdb03d45593d9d5f26d524b0f59af605020e9f5da0c97a9062cdfa7360596f
+  tag: 2025.6.0@sha256:2b02fb234a4d1dc968b0207d7fb024bf9afee52c3b0823b26e1713e32faa51e0
   pullPolicy: Always
 service:
   main:
@@ -85,6 +85,3 @@ persistence:
   config:
     enabled: true
     mountPath: "/data"
-portal:
-  open:
-    enabled: false

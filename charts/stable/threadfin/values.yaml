@@ -1,6 +1,6 @@
 image:
   repository: fyb3roptik/threadfin
-  tag: 1.2.31@sha256:78479cea0ec70c72510a98d88b8e34ec3cc695a64cbb92829fd6310d400b2ac6
+  tag: 1.2.34@sha256:7ca1302878e1f2661ab014fafacdeeefff6ef6f425db04c6ae033c381d5144b5
   pullPolicy: IfNotPresent
 service:
   main:
@@ -15,6 +15,3 @@ persistence:
     enabled: true
     mountPath: "/tmp/threadfin"
     type: emptyDir
-portal:
-  open:
-    enabled: true

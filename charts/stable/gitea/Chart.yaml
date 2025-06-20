@@ -1,12 +1,15 @@
 annotations:
+  artifacthub.io/links: |-
+    - name: support
+    url: https://discord.com/invite/tVsPTHWTtr
   max_scale_version: 24.04.1
   min_scale_version: 24.04.0
   truecharts.org/category: GIT
-  truecharts.org/max_helm_version: "3.15"
-  truecharts.org/min_helm_version: "3.11"
+  truecharts.org/max_helm_version: "3.17"
+  truecharts.org/min_helm_version: "3.14"
   truecharts.org/train: stable
 apiVersion: v2
-appVersion: 1.23.5
+appVersion: 1.24.0
 dependencies:
   - name: common
     version: 25.4.10
@@ -16,7 +19,7 @@ dependencies:
     tags: []
     import-values: []
   - name: memcached
-    version: 14.5.7
+    version: 14.5.13
     repository: oci://tccr.io/truecharts
     condition: memcached.enabled
     alias: ""
@@ -45,4 +48,5 @@ sources:
   - https://github.com/truecharts/charts/tree/master/charts/stable/gitea
   - https://hub.docker.com/r/gitea/gitea
 type: application
-version: 20.12.12
+version: 20.13.0
+

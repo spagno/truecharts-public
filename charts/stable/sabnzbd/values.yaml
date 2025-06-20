@@ -1,11 +1,11 @@
 image:
   repository: ghcr.io/home-operations/sabnzbd
   pullPolicy: IfNotPresent
-  tag: 4.4.1@sha256:95a8393d30e360297acee2dac8791e2787355d2880543200ce552f54ebab5c52
+  tag: 4.5.1@sha256:d57f89bf771f2236a22643482d5a80736cb6c2944c7f7d4168a15332a5a26f83
 exportarrImage:
   repository: ghcr.io/onedr0p/exportarr
   pullPolicy: IfNotPresent
-  tag: v2.0.1@sha256:727e7bc8f2f0934a2117978c59f4476b954018b849a010ea6cfb380bd6539644
+  tag: v2.2.0@sha256:320b0ea7399f4b9af4741dcdddd7d40c05c36b0359679305d8a54df4e97065df
 service:
   main:
     ports:
@@ -23,6 +23,16 @@ workload:
     podSpec:
       containers:
         main:
+          probes:
+            liveness:
+              port: "{{ .Values.service.main.ports.main.port }}"
+              path: /api?mode=version
+            readiness:
+              port: "{{ .Values.service.main.ports.main.port }}"
+              path: /api?mode=version
+            startup:
+              port: "{{ .Values.service.main.ports.main.port }}"
+              path: /api?mode=version
           env:
             SABNZBD__HOST_WHITELIST_ENTRIES: ""
             SABNZBD__PORT: "{{ .Values.service.main.ports.main.port }}"
@@ -72,7 +82,3 @@ metrics:
     targetSelector: metrics
     # Required for exportarr
     apiKey: ""
-
-portal:
-  open:
-    enabled: true

@@ -1,7 +1,7 @@
 image:
   repository: docker.io/stonith404/pingvin-share
   pullPolicy: IfNotPresent
-  tag: v1.10.3@sha256:7a6ec59ec020636169a8479e91aa920b468107a333b8e5a40c490d5ca956a5b5
+  tag: v1.13.0@sha256:6bf2bcd3043ee68cb61264f0857511ccf7f212fdb984382b7f2d491635184ad6
 
 securityContext:
   container:
@@ -25,7 +25,3 @@ persistence:
   image:
     enabled: true
     mountPath: "/opt/app/frontend/public/img"
-
-portal:
-  open:
-    enabled: true

@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/manyfold3d/manyfold
-  tag: 0.104.0@sha256:0b28b91c2bc9a0aa509bd18028e5d328e9490542581ececb680cbdf9e34baaef
+  tag: 0.114.1@sha256:ecde60899c2eb95df8167ece994c53ad53036c7118e39dafbbf0d10e05a22bda
   pullPolicy: IfNotPresent
 securityContext:
   container:
@@ -56,6 +56,3 @@ cnpg:
     database: manyfold
 redis:
   enabled: true
-portal:
-  open:
-    enabled: true

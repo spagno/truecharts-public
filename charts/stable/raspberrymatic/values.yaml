@@ -1,7 +1,7 @@
 image:
   pullPolicy: IfNotPresent
   repository: ghcr.io/jens-maus/raspberrymatic
-  tag: latest@sha256:96a22f7b28275b96ae134a63019f0545fb58215073365a85ffc3e746e4ee7357
+  tag: latest@sha256:d44ad495299632cf2ad01f83fc525e77c0daaefc900f9f06d265aabdfed571f6
 persistence:
   config:
     enabled: true
@@ -22,9 +22,7 @@ persistence:
     hostPath: /sys
     mountPath: /sys
     type: hostPath
-portal:
-  open:
-    enabled: true
+
 securityContext:
   container:
     readOnlyRootFilesystem: false

@@ -1,6 +1,6 @@
 image:
   repository: docker.io/binwiederhier/ntfy
-  tag: v2.11.0@sha256:4a7d0f0adc6d5d9fc36e64ab55ef676e76e124a2bdd50ce115b6d9c1c7430294
+  tag: v2.12.0@sha256:e1a5e7324268fac1918c511105cedc2fd33d3a31f26a2abc4cf3c3c8d63dcb0c
   pullPolicy: IfNotPresent
 service:
   main:
@@ -23,9 +23,7 @@ configmap:
       NTFY_CACHE_FILE: '{{ ternary "/var/cache/ntfy/cache.db" "" .Values.workload.main.podSpec.containers.main.env.ENABLE_CACHE_FILE }}'
       NTFY_AUTH_FILE: '{{ ternary "/etc/ntfy/user.db" "" .Values.workload.main.podSpec.containers.main.env.ENABLE_AUTH_FILE }}'
       NTFY_FIREBASE_KEY_FILE: '{{ ternary "/etc/ntfy/firebase-key.json" "" .Values.workload.main.podSpec.containers.main.env.ENABLE_FIREBASE_FILE }}'
-portal:
-  open:
-    enabled: true
+
 workload:
   main:
     podSpec:

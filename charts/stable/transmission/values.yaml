@@ -1,7 +1,7 @@
 image:
   repository: docker.io/linuxserver/transmission
   pullPolicy: IfNotPresent
-  tag: 4.0.6@sha256:c752163e5692241185492ac8f9efafd0249e196ab1d7bcc398e69e2c44f331d5
+  tag: 4.0.6@sha256:3f87d731303a4cfa6ec312f653a440943bd1d9670438415f39bd17669f84d950
 service:
   main:
     ports:
@@ -46,8 +46,6 @@ persistence:
   config:
     enabled: true
     mountPath: "/config"
-portal:
-  open:
-    enabled: true
+
 manifestManager:
   enabled: false

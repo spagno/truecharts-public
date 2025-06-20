@@ -1,7 +1,7 @@
 image:
   repository: public.ecr.aws/bitnami/redis
   pullPolicy: IfNotPresent
-  tag: 7.4.2@sha256:60c585e4b3ce2758d511f861158330ce4ae8483bd28723db5a30069294bb82e3
+  tag: 8.0.2@sha256:f004fdf18bc6f8669d53495df43e2b84a709a78bba756cb9217c3ce9df662818
 
 includeCommon: true
 workload:
@@ -153,6 +153,3 @@ persistence:
         path: ping_liveness_local_and_master.sh
       - key: ping_readiness_local_and_master.sh
         path: ping_readiness_local_and_master.sh
-portal:
-  open:
-    enabled: false

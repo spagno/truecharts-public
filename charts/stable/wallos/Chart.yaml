@@ -1,12 +1,15 @@
 annotations:
+  artifacthub.io/links: |-
+    - name: support
+    url: https://discord.com/invite/tVsPTHWTtr
   max_scale_version: 24.04.1
   min_scale_version: 24.04.0
   truecharts.org/category: media
-  truecharts.org/max_helm_version: "3.15"
-  truecharts.org/min_helm_version: "3.11"
+  truecharts.org/max_helm_version: "3.17"
+  truecharts.org/min_helm_version: "3.14"
   truecharts.org/train: stable
 apiVersion: v2
-appVersion: 2.46.1
+appVersion: 3.3.0
 dependencies:
   - name: common
     version: 25.4.10
@@ -32,4 +35,5 @@ sources:
   - https://github.com/ellite/Wallos
   - https://github.com/truecharts/charts/tree/master/charts/stable/wallos
 type: application
-version: 6.10.1
+version: 7.3.0
+
