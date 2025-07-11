@@ -1,9 +1,8 @@
 image:
   repository: docker.io/clickhouse/clickhouse-server
   pullPolicy: IfNotPresent
-  tag: 25.5.2.47@sha256:8b94fc9559b96cf12a23050fd19522ba63d557e0ae8d61ef281ce9485ed0410f
+  tag: 25.6.3.116@sha256:d1d119d98027a0a69bc91be3d6fe06293a1f2c3f9980372b07032ad160a132f0
 
-includeCommon: true
 workload:
   main:
     replicas: 1

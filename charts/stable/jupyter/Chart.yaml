@@ -9,10 +9,10 @@ annotations:
   truecharts.org/min_helm_version: "3.14"
   truecharts.org/train: stable
 apiVersion: v2
-appVersion: 2025.6.16
+appVersion: 2025.7.7
 dependencies:
   - name: common
-    version: 25.4.10
+    version: 28.13.0
     repository: oci://tccr.io/truecharts
     condition: ""
     alias: ""
@@ -44,5 +44,5 @@ sources:
   - https://quay.io/jupyter/scipy-notebook
   - https://quay.io/jupyter/tensorflow-notebook
 type: application
-version: 11.32.16
+version: 12.9.0
 
